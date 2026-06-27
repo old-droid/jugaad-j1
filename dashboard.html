@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J1 Dashboard</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  image-rendering: pixelated;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Scanline overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.015) 2px,
+    rgba(255,255,255,0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 48px;
+  border-bottom: 2px solid #333;
+  padding-bottom: 24px;
+}
+
+h1 {
+  font-size: 28px;
+  letter-spacing: 6px;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+header p {
+  font-size: 8px;
+  color: #555;
+  margin-top: 8px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 8px;
+  color: #666;
+  letter-spacing: 2px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  animation: blink 1.2s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Card grid */
+.grid { display: flex; flex-direction: column; gap: 16px; }
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  border: 1px solid #222;
+  background: #0a0a0a;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.card:hover {
+  border-color: #fff;
+  background: #111;
+  transform: scale(1.01);
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.card-content { flex: 1; }
+
+.card-title {
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.card-sub {
+  font-size: 7px;
+  color: #555;
+  letter-spacing: 1px;
+}
+
+.card-arrow {
+  font-size: 14px;
+  color: #333;
+  transition: color 0.15s;
+}
+
+.card:hover .card-arrow { color: #fff; }
+
+.divider { text-align: center; margin: 24px 0; position: relative; }
+
+.divider-line {
+  border: none;
+  height: 1px;
+  background: #222;
+  width: 100%;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid #222;
+  font-size: 7px;
+  color: #333;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Cursor flicker */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 12px;
+  background: #fff;
+  margin-left: 4px;
+  animation: blink 0.8s step-end infinite;
+  vertical-align: middle;
+}
+
+@media (max-width: 400px) {
+  h1 { font-size: 18px; }
+  .card { padding: 16px 18px; }
+  .card-title { font-size: 10px; }
+  .icon-box { width: 40px; height: 40px; font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>J1</h1>
+    <p>Jugaad Terminal v1.0</p>
+    <div class="status">
+      <span class="status-dot"></span>
+      SYSTEM ONLINE
+      <span class="cursor"></span>
+    </div>
+  </header>
+
+  <div class="grid">
+    <a href="https://www.perplexity.ai" target="_blank" rel="noopener" class="card">
+      <div class="icon-box">⌘</div>
+      <div class="card-content">
+        <div class="card-title">J1</div>
+        <div class="card-sub">Perplexity AI Assistant</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://www.google.com/android/find" target="_blank" rel="noopener" class="card">
+      <div class="icon-box">◈</div>
+      <div class="card-content">
+        <div class="card-title">Find My J1</div>
+        <div class="card-sub">Google Find My Device</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://manus.im" target="_blank" rel="noopener" class="card">
+      <div class="icon-box">◆</div>
+      <div class="card-content">
+        <div class="card-title">Intern Mode</div>
+        <div class="card-sub">Manus AI Agent</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+  </div>
+
+  <hr class="divider-line">
+
+  <div class="footer">
+    J1 • Jugaad AI Hardware
+  </div>
+</div>
+
+</body>
+</html>
